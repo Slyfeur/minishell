@@ -1,0 +1,138 @@
+Compiler
+- Exécuter make -n pour voir si la compilation utilise -Wall -Wextra -Werror sinon utiliser des flags de compilation invalides 
+- minishell Compile sans erreurs si pas utiliser flags 
+- makefile ne doit pas re-linker
+
+Commande simple et globale
+- Exécuter une commande simple avec un chemin absolu comme /bin/ls ou toute autre commande sans options. 
+- Combien de variables globales ? pourquoi ? Donnez un exemple concret de pourquoi cela semble obligatoire ou logique. 
+- Testez une commande vide. 
+- Ne testez que les espaces ou les tabulations. 
+- Si quelque chose se bloque, utilisez le drapeau de blocage. 
+- si quelque chose ne fonctionne pas, utilisez le drapeau de travail incomplet.
+
+Arguments et histoire
+- Exécutez une commande simple avec un chemin absolu comme /bin/ls ou toute autre commande avec des arguments mais sans guillemets ni double guillemets 
+- Répétez plusieurs fois avec des commandes et des arguments différents 
+- si quelque chose plante, utilisez le drapeau de plantage. 
+- si quelque chose ne fonctionne pas, utilisez le drapeau "incomplete work".
+
+Echo
+- Exécute la commande echo avec ou sans arguments ou -n 
+- Répétez plusieurs fois avec des arguments différents 
+- si quelque chose plante, utilisez le drapeau de plantage. 
+- si quelque chose ne fonctionne pas, utilisez l'indicateur de travail incomplet.
+
+Quitter
+- Exécute la commande exit avec ou sans arguments 
+- Répétez plusieurs fois avec des arguments différents 
+- N'oubliez pas de relancer le minishell. 
+- si quelque chose plante, utilisez l'indicateur de plantage. 
+- si quelque chose ne fonctionne pas, utilisez le drapeau "incomplete work".
+
+Valeur de retour d'un processus
+-Exécutez une commande simple avec un chemin absolu comme /bin/ls ou toute autre commande avec des arguments mais sans guillemets ni double guillemets puis exécutez echo $ ? 
+- Vérifiez la valeur imprimée. Vous pouvez répéter la même chose dans bash et la comparer. 
+- Répétez plusieurs fois avec des commandes et des arguments différents, utilisez des commandes qui échouent comme '/bin/ls filethatdoesntexist'. 
+- quelque chose comme expr $ ? + $ ? 
+- si quelque chose plante, utilisez le drapeau de plantage. 
+- si quelque chose ne fonctionne pas, utilisez le drapeau "incomplete work".
+
+Signaux
+- Essayer ctrl-C dans une invite vide devrait afficher une nouvelle ligne avec une nouvelle invite. 
+- Essayer ctrl-\ dans une invite vide ne devrait rien faire. 
+- Essayer ctrl-D dans une invite vide devrait quitter le minishell --> RELAUNCH ! 
+- Essayez ctrl-C dans un prompt après avoir écrit quelque chose devrait montrer une nouvelle ligne avec un nouveau prompt. 
+- Le tampon devrait être propre aussi, appuyez sur "enter" pour vous assurer que rien de l'ancienne ligne n'est exécuté. 
+- Essayer ctrl-D dans une invite après avoir écrit des choses ne devrait rien faire. 
+- Essayez ctrl-\ dans une invite après avoir écrit des choses qui ne devraient rien faire ! 
+- Essayez ctrl-C après avoir exécuté une commande bloquante comme cat ou grep sans arguments. 
+- Essaie ctrl-\ après avoir exécuté une commande de blocage comme cat ou grep sans arguments. 
+- Essayez ctrl-D après avoir exécuté une commande de blocage comme cat ou grep sans arguments. 
+- Répétez plusieurs fois avec des commandes différentes 
+- si quelque chose plante, utilisez le drapeau de plantage. 
+- si quelque chose ne fonctionne pas, utilisez l'indicateur de travail incomplet.
+
+Citations doubles
+- Exécutez une commande simple avec des arguments, mais cette fois entre guillemets (vous devez inclure les espaces). 
+- une commande du type : echo "cat lol.c | cat > lol.c". 
+- tout sauf $. 
+- si quelque chose plante, utilisez le drapeau de plantage. 
+- si quelque chose ne fonctionne pas, utilisez le drapeau "incomplete work".
+
+Citations simples
+- Exécutez les commandes avec des guillemets simples comme argument. 
+- Essayez les arguments vides 
+- Essayez les variables d'environnement, les espaces, les pipes, les redirections dans les guillemets simples. 
+- echo '$USER' doit afficher $USER 
+- Rien ne doit être interprété
+
+Env
+- Vérifiez si env vous montre les variables d'environnement actuelles
+
+Exporter
+- Exporte les variables d'environnement, en crée de nouvelles et remplace les anciennes. 
+- Vérifiez-les avec env
+
+Annuler
+- Exporte les variables d'environnement, en crée de nouvelles et remplace les anciennes. 
+- Utilisez unset pour supprimer certaines d'entre elles 
+- Vérifiez le résultat avec env
+
+Cd
+- Utilisez la commande cd pour déplacer le répertoire de travail et vérifiez si vous êtes dans le bon répertoire avec /bin/ls. 
+- Répétez plusieurs fois avec des cd fonctionnels et non fonctionnels. 
+- essayez aussi '.' '...' comme arguments
+
+Pwd
+- Utilisez la commande pwd 
+- Répétez plusieurs fois dans plusieurs répertoires
+
+Chemin relatif
+- Exécutez les commandes, mais utilisez cette fois un chemin relatif. 
+- Répéter plusieurs fois dans plusieurs répertoires avec un chemin relatif complexe (beaucoup de ..)
+
+Chemin de l'environnement
+- Exécuter les commandes mais cette fois sans chemin d'accès. (ls, wc, awk etc...) 
+- Annulez le $PATH et vérifiez si cela ne fonctionne plus. 
+- Définissez le $PATH à une valeur de répertoire multiple (répertoire1:répertoire2) et vérifiez que les répertoires sont vérifiés dans l'ordre de gauche à droite.
+
+Redirection
+- Exécutez les commandes avec les redirections < et/ou >. 
+- Répétez plusieurs fois avec des commandes et des arguments différents et changez parfois > par >>. 
+- Vérifier si plusieurs des mêmes redirections échouent 
+-Test<<redirection(il n'est pas nécessaire de mettre à jour l'historique).
+
+Tuyaux
+- Exécutez des commandes avec des tuyaux comme 'cat file | grep bla | more'. 
+- Répétez plusieurs fois avec des commandes et des arguments différents. 
+- Essayez des commandes ratées comme 'ls filethatdoesntexist | grep bla | more'. 
+- Essayez de mélanger les pipes et les redirections.
+
+Devenir fou et historique
+- Tapez une ligne de commande puis utilisez ctrl-C et appuyez sur Entrée. Le tampon doit être propre et rien ne doit être exécuté. 
+- Peut-on naviguer dans l'historique avec le haut et le bas et réessayer une commande ? 
+- Exécuter des commandes qui ne devraient pas fonctionner comme 'dsbksdgbksdghsd' et vérifier si le shell ne plante pas et n'affiche pas une erreur. 
+- Essayez d'exécuter une longue commande avec une tonne d'arguments. 
+- Amusez-vous bien avec ce magnifique minishell et profitez-en.
+
+Variables d'environnement
+- Exécutez echo avec des variables $ comme arguments. 
+- Vérifiez que $ est interprété comme une variable d'environnement. 
+- Vérifiez que les guillemets doubles interpolent $. 
+- Vérifiez que $USER existe ou définissez-le. 
+- echo "$USER" devrait afficher la valeur de $USER.
+
+Bonus
+
+Et, Ou
+-Utilisez les parenthèses&&,||et avec les commandes et vérifiez si cela fonctionne comme bash.
+
+Caractère sauvage
+- Utilisez des caractères de remplacement dans les arguments pour le répertoire local.
+
+Surprise(ou pas...)
+- Définir la variable d'environnement USER. 
+- Test echo "'$USER'" devrait afficher 'USER_VALUE'. 
+- Test echo '"$USER"' devrait afficher "$USER".
+
